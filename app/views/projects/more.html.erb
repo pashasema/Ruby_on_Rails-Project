@@ -1,0 +1,91 @@
+<h1>Semenov Pavel</h1>  
+<br>  
+<h2>Projects</h2>
+<table>  
+  <thead>  
+    <tr>  
+      <th>Project id</th>  
+      <th>Name of project</th>  
+      <th>Summary</th>  
+      <th>Stard date</th>  
+      <th>End date</th>  
+    </tr>  
+  </thead>  
+  <tbody>  
+
+    <!-- @tasks is passed from controller to view -->  
+    <% @projects.each do |project| %>           <!-- for loop -->  
+    <tr>  
+      <td><%= project.id %></td>           <!--get Project ID using reference -->  
+      <td><%= project.name %></td>         <!--get Project title -->  
+      <td><%= project.summary %></td>      <!--get Project summary --> 
+      <td><%= project.start_date %></td>   <!--get Project start date --> 
+      <td><%= project.end_date %></td>     <!--get Project end date -->  
+      <td><%= link_to 'Edit project', edit_project_path(project) %></td>  
+      <td><%= link_to 'Delete project', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>  
+    </tr>  
+    <% end %>  
+  </tbody>  
+</table>
+<%= link_to 'New Project', new_project_path %>
+<br>  
+<h2>Tasks</h2>
+<table>  
+  <thead>  
+    <tr>  
+      <th>Task id</th>  
+      <th>Name of project</th>  
+      <th>Title</th>
+      <th>Description</th>    
+      <th>Status</th>    
+    </tr>  
+  </thead>  
+  <tbody>  
+    <!-- @tasks is passed from controller to view -->  
+    <% @tasks.each do |task| %>           <!-- for loop -->  
+    <tr>  
+      <td><%= task.id %></td>         	<!--get Project ID using reference -->  
+      <td><%= task.project.name %></td>      		<!--get Project name -->  
+      <td><%= task.title %></td>								<!--get Task Title --> 
+      <td><%= task.description %></td>					<!--get Task Description --> 
+      <td><%= task.status %></td>								<!--get Task Status -->  
+      <td><%= link_to 'Edit task', edit_task_path(task) %></td>  
+      <td><%= link_to 'Delete task', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>  
+    </tr>  
+    <% end %>  
+  </tbody>  
+</table>
+<%= link_to 'New Task', new_task_path %>
+<br>  
+<h2>Users</h2>
+<table>  
+  <thead>  
+    <tr>   
+      <th>Name of project</th>  
+      <th>Title of task</th>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Password</th>
+      <th>Email</th>
+      <th>Admin</th>
+    </tr>  
+  </thead>  
+  <tbody>  
+    <!-- @tasks is passed from controller to view -->  
+    <% @users.each do |user| %>           <!-- for loop -->  
+    <tr>
+      <td><%= user.task.project.name %></td>        <!--get Project Name -->  
+      <td><%= user.task.title %></td>               <!--get Task Title --> 
+      <td><%= user.first_name %></td>               <!--get User First_name -->  
+      <td><%= user.last_name %></td>                <!--get User Last_name -->  
+      <td><%= user.password %></td>                 <!--get User password --> 
+      <td><%= user.email %></td>                    <!--get User email --> 
+      <td><%= user.admin %></td>                    <!--get User admin or not -->  
+      <td><%= link_to 'Edit user', edit_user_path(user) %></td>  
+      <td><%= link_to 'Delete user', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>  
+    </tr>  
+    <% end %>  
+  </tbody>  
+</table>
+<%= link_to 'New User', new_user_path %>
+
